@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
+  </head>
+  <body>
+    <div id="app">
+      <fm-generate-form :data="jsonData" :remote="remoteFuncs" :value="editData" ref="generateForm">
+        
+      </fm-generate-form>
+      <el-button type="primary" @click="handleSubmit">提交</el-button>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios@0.19.1/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          jsonData: {"list":[{"type":"input","icon":"icon-input","options":{"width":"100%","defaultValue":"","required":false,"dataType":"string","pattern":"","placeholder":"","disabled":false,"remoteFunc":"func_1578556246000_39405"},"name":"单行文本","key":"1578556246000_39405","model":"input_1578556246000_39405","rules":[{"type":"string","message":"单行文本格式不正确"}]},{"type":"textarea","icon":"icon-diy-com-textarea","options":{"width":"100%","defaultValue":"","required":false,"disabled":false,"pattern":"","placeholder":"","remoteFunc":"func_1578556247000_91733"},"name":"多行文本","key":"1578556247000_91733","model":"textarea_1578556247000_91733","rules":[]},{"type":"radio","icon":"icon-radio-active","options":{"inline":false,"defaultValue":"","showLabel":false,"options":[{"value":"Option 1","label":"Option 1"},{"value":"Option 2","label":"Option 2"},{"value":"Option 3","label":"Option 3"}],"required":false,"width":"","remote":false,"remoteOptions":[],"props":{"value":"value","label":"label"},"remoteFunc":"func_1578556248000_93492","disabled":false},"name":"单选框组","key":"1578556248000_93492","model":"radio_1578556248000_93492","rules":[]}],"config":{"labelWidth":100,"labelPosition":"right","size":"small"}},
+          editData: {},
+          remoteFuncs: {
+            
+          }
+        },
+        methods: {
+          handleSubmit () {
+            this.$refs.generateForm.getData().then(data => {
+              // data check success
+              // data - form data
+			
+			axios({  
+				method:'post',  
+				url:'http://127.0.0.1:5000/fillin',  
+				data:{
+					firstName: 'mytest',
+					widgetForm: data
+					},  
+				headers:{'Content-Type': 'application/json'} 
+			}).then((res)=>{
+				console.log(res.data);
+			});					  
+			  
+            }).catch(e => {
+              // data check failed
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+  </html>

@@ -91,6 +91,7 @@ export default function (data) {
       <el-button type="primary" @click="handleSubmit">提交</el-button>
     </div>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios@0.19.1/dist/axios.min.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
     <script>
@@ -108,6 +109,19 @@ export default function (data) {
             this.$refs.generateForm.getData().then(data => {
               // data check success
               // data - form data
+			
+			axios({  
+				method:'post',  
+				url:'http://127.0.0.1:5000/fillin',  
+				data:{
+					firstName: 'mytest',
+					widgetForm: data
+					},  
+				headers:{'Content-Type': 'application/json'} 
+			}).then((res)=>{
+				console.log(res.data);
+			});					  
+			  
             }).catch(e => {
               // data check failed
             })

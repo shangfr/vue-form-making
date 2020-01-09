@@ -169,6 +169,7 @@ import {basicComponents, layoutComponents, advanceComponents} from './components
 import {loadJs, loadCss} from '../util/index.js'
 import request from '../util/request.js'
 import generateCode from './generateCode.js'
+import axios from 'axios'
 
 export default {
   name: 'fm-making-form',
@@ -330,6 +331,17 @@ export default {
       this.jsonVisible = true
       this.jsonTemplate = this.widgetForm
       console.log(JSON.stringify(this.widgetForm))
+	  axios({  
+				method:'post',  
+				url:'http://127.0.0.1:5000/form',  
+				data:{
+					firstName: 'form',
+					widgetForm: JSON.stringify(this.widgetForm)
+					},  
+				headers:{'Content-Type': 'application/json'} 
+			}).then((res)=>{
+				console.log(res.data);
+			});
       this.$nextTick(() => {
 
         const editor = ace.edit('jsoneditor')
@@ -347,6 +359,17 @@ export default {
     handleGenerateCode () {
       this.codeVisible = true
       this.htmlTemplate = generateCode(JSON.stringify(this.widgetForm))
+	  axios({  
+			method:'post',  
+			url:'http://127.0.0.1:5000/form_html',  
+			data:{
+				firstName: 'formhtml',
+				htmlTemplate: this.htmlTemplate
+				},  
+			headers:{'Content-Type': 'application/json'} 
+		}).then((res)=>{
+			console.log(res.data);
+		});
       this.$nextTick(() => {
         const editor = ace.edit('codeeditor')
         editor.session.setMode("ace/mode/html")
