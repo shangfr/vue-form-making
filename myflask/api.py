@@ -8,14 +8,16 @@ Created on Thu Jan  9 15:22:09 2020
 import time
 import pandas as pd 
 import json
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import reqparse, abort, Api, Resource,request
 from flask_cors import CORS
+from flask_bootstrap import Bootstrap
 
 import warnings
 warnings.simplefilter(action = "ignore", category = FutureWarning)
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 CORS(app, supports_credentials=True) 
 api = Api(app)
 
@@ -37,9 +39,9 @@ class Todo(Resource):
     def get(self, todo_id):
         abort_if_todo_doesnt_exist(todo_id)
         if todo_id == 'todo1':
-            data_filtered()
+            print('abc')
         elif todo_id == 'todo2':
-            user_filtered()
+            print('123')
         else:
             print('no task')
         return TODOS[todo_id]
@@ -70,8 +72,9 @@ class TodoList(Resource):
 
 class Todoform(Resource):
     def get(self):
-        return 'aa'
-
+        with open('forms/data.json','r',encoding='utf-8') as f:
+            data = json.load(f)
+        return data
     def post(self):
         p_dict=request.json
         print(p_dict['widgetForm'])
@@ -95,14 +98,19 @@ class Todofill(Resource):
             json.dump(p_dict,f,ensure_ascii=False)
         return 'ok', 201
 # 从文件读取数据
-#with open('C:\\Users\\ShangFR\\Desktop\\rankmodel\\data.json','r',encoding='utf-8') as f:
+#with open('C:\\Users\\ShangFR\\Desktop\\vue-form-making\\myflask\\forms\\data.json','r',encoding='utf-8') as f:
 #    data = json.load(f)
 
 #数据
+ 
 
 ##
 ## Actually setup the Api resource routing here
 ##
+@app.route('/hello')
+def hello(name=None):
+    return  render_template('form.html',  name=name)
+
 api.add_resource(TodoList, '/todos')
 api.add_resource(Todo, '/todos/<todo_id>')
 api.add_resource(Todoform, '/form')

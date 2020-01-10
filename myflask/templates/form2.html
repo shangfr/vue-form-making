@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
+  </head>
+  <body>
+<div id="app">
+  {[ info ]}
+</div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios@0.19.1/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
+<script type = "text/javascript">
+new Vue({
+  el: '#app',
+  delimiters: ['{[', ']}'],
+  data () {
+    return {
+      info: null
+    }
+  },
+  mounted () {
+    axios
+      .get('http://127.0.0.1:5000/form')
+      .then(response => (this.info = response.data))
+      .catch(function (error) { // 请求失败处理
+        console.log(error);
+      });
+  }
+})
+</script>
+  </body>
+  </html>

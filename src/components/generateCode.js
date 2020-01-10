@@ -79,17 +79,22 @@ export default function (data) {
   return `<!DOCTYPE html>
   <html>
   <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>智能表单 (Form)</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
-  </head>
-  <body>
+	<link rel="stylesheet" href="static/github.css" /> 
+ </head> 
+ <body> 
+  <article class="markdown-body">
     <div id="app">
       <fm-generate-form :data="jsonData" :remote="remoteFuncs" :value="editData" ref="generateForm">
-        ${blankTemplate}
+        
       </fm-generate-form>
-      <el-button type="primary" @click="handleSubmit">提交</el-button>
+      <el-button type="primary" @click="handleSubmit" :disabled="disable">提交</el-button>
     </div>
+  </article>  
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/axios@0.19.1/dist/axios.min.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -102,7 +107,8 @@ export default function (data) {
           editData: {},
           remoteFuncs: {
             ${funcTemplate}
-          }
+          },
+		  disable: false
         },
         methods: {
           handleSubmit () {
@@ -119,6 +125,7 @@ export default function (data) {
 					},  
 				headers:{'Content-Type': 'application/json'} 
 			}).then((res)=>{
+				this.disable = true;
 				console.log(res.data);
 			});					  
 			  
