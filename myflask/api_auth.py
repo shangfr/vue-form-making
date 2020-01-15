@@ -13,7 +13,7 @@ from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth, MultiAuth
 from werkzeug.security import generate_password_hash,check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
-from script.models import *
+from script.models import * #User,build_sample_db
 
 app = Flask(__name__)
 api = Api(app)
