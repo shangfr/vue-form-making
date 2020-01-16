@@ -335,7 +335,7 @@ export default {
 				method:'post',  
 				url:'http://127.0.0.1:5000/form',  
 				data:{
-					firstName: 'form',
+					userName: 'form',
 					widgetForm: JSON.stringify(this.widgetForm)
 					},  
 				headers:{'Content-Type': 'application/json'} 
@@ -363,7 +363,7 @@ export default {
 			method:'post',  
 			url:'http://127.0.0.1:5000/form_html',  
 			data:{
-				firstName: 'formhtml',
+				userName: 'formhtml',
 				htmlTemplate: this.htmlTemplate
 				},  
 			headers:{'Content-Type': 'application/json'} 
