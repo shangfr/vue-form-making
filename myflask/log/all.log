@@ -1,0 +1,15 @@
+2020-04-07 17:41:19,885 - C:\Users\ShangFR\Desktop\vue-form-making\myflask\api_auth.py[line:33] - DEBUG: debug
+2020-04-07 17:41:19,885 - C:\Users\ShangFR\Desktop\vue-form-making\myflask\api_auth.py[line:34] - INFO: info
+2020-04-07 17:41:19,900 - C:\Users\ShangFR\Desktop\vue-form-making\myflask\api_auth.py[line:35] - WARNING: 警告
+2020-04-07 17:41:19,900 - C:\Users\ShangFR\Desktop\vue-form-making\myflask\api_auth.py[line:36] - ERROR: 报错
+2020-04-07 17:41:19,900 - C:\Users\ShangFR\Desktop\vue-form-making\myflask\api_auth.py[line:37] - CRITICAL: 严重
+2020-04-07 17:41:19,950 - api_auth.py[line:33] - DEBUG: debug
+2020-04-07 17:41:19,950 - api_auth.py[line:33] - DEBUG: debug
+2020-04-07 17:41:19,950 - api_auth.py[line:34] - INFO: info
+2020-04-07 17:41:19,950 - api_auth.py[line:34] - INFO: info
+2020-04-07 17:41:19,950 - api_auth.py[line:35] - WARNING: 警告
+2020-04-07 17:41:19,950 - api_auth.py[line:35] - WARNING: 警告
+2020-04-07 17:41:19,950 - api_auth.py[line:36] - ERROR: 报错
+2020-04-07 17:41:19,950 - api_auth.py[line:36] - ERROR: 报错
+2020-04-07 17:41:19,950 - api_auth.py[line:37] - CRITICAL: 严重
+2020-04-07 17:41:19,950 - api_auth.py[line:37] - CRITICAL: 严重

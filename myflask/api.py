@@ -19,7 +19,7 @@ warnings.simplefilter(action = "ignore", category = FutureWarning)
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-CORS(app, supports_credentials=True) 
+CORS(app, supports_credentials = True) 
 api = Api(app)
 
 #import os
